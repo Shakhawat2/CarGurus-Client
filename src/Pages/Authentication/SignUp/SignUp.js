@@ -23,7 +23,7 @@ const SignUp = () => {
             .then(res => res.json())
             .then(result => {
                 const image = result.data.url;
-
+                // create account with email and password
                 createAccountWithEmail(data?.email, data?.password)
                     .then(() => {
                         profileUpdate(name, image)
@@ -64,7 +64,7 @@ const SignUp = () => {
                     navigate('/');
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => toast.error(err))
     }
 
     // Create Account With Google
