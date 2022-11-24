@@ -1,11 +1,10 @@
-import ErrorPage from "./Pages/ErrorPage/ErrorPage";
-import Footer from "./Pages/Shared/Footer/Footer";
+import { RouterProvider } from "react-router-dom/dist";
+import { router } from "./Routes/Router/Router";
 
 function App() {
   return (
     <div className="max-w-screen-xl mx-auto">
-      <ErrorPage></ErrorPage>
-      <Footer></Footer>
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 }
