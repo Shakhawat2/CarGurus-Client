@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom/dist';
@@ -6,14 +6,13 @@ import { AuthContext } from '../../../Context/UserContext';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { signInWithGoogle, logIn } = useContext(AuthContext);
-
+    const { signInWithGoogle, logIn, resetPassword } = useContext(AuthContext);
+    const [email, setEmail] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
     const handleSignIn = (data) => {
-
         // sign in 
         logIn(data?.email, data?.password)
             .then(() => {
@@ -37,6 +36,20 @@ const Login = () => {
                 const errorMessage = error.message;
                 toast.error(errorMessage)
             });
+    }
+    const updatePassword = (email) => {
+        if(email){
+            resetPassword(email)
+            .then(() => {
+                toast('Password reset email sent')
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+            });
+        }
+        toast('enter email')
+
     }
     return (
         <div className="h-screen">
@@ -65,6 +78,7 @@ const Login = () => {
                         <div className="mt-4">
                             <label className="block text-white text-sm font-bold mb-2">Email Address</label>
                             <input
+                                onBlur={(e) => setEmail(e.target.value)}
                                 {...register('email',
                                     { required: "This field is required" }
                                 )}
@@ -75,7 +89,7 @@ const Login = () => {
                         <div className="mt-4">
                             <div className="flex justify-between">
                                 <label className="block text-white text-sm font-bold mb-2">Password</label>
-                                <button className="text-xs text-white hover:underline">Forget Password?</button>
+                                <button onClick={() => updatePassword(email)} className="text-xs text-white hover:underline">Forget Password?</button>
                             </div>
                             <input
                                 {...register('password',

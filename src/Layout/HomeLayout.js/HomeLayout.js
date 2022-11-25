@@ -1,12 +1,10 @@
 import React from 'react';
-import Login from '../../Pages/Authentication/Login/Login';
-import SignUp from '../../Pages/Authentication/SignUp/SignUp';
+import Home from '../../Pages/Home/Home/Home';
 
 const HomeLayout = () => {
     return (
         <div>
-            <Login></Login>
-            <SignUp></SignUp>
+            <Home></Home>
         </div>
     );
 };
