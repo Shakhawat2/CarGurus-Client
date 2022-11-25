@@ -53,9 +53,9 @@ const Login = () => {
     }
     return (
         <div className="h-screen">
-            <div className="flex bg-white  shadow-lg h-screen overflow-hidden ">
+            <div className="flex shadow-lg h-screen overflow-hidden ">
                 <div className="hidden lg:block lg:w-1/2 bg-cover" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80')`, backgroundRepeat: 'no-repeat' }}></div>
-                <div className="w-full p-8 lg:w-1/2 bg-gray-900">
+                <div className="w-full p-8 lg:w-1/2 bg-black">
                     <h2 className="text-2xl font-bold text-white text-center">CarGurus</h2>
                     <p className="text-xl text-white text-center">Welcome back!</p>
                     <button onClick={handleGoogle} className="flex w-full items-center justify-center mt-4 text-white  shadow-md bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
