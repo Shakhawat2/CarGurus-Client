@@ -3,9 +3,11 @@ import DashboardLayout from "../../Layout/DashboardLayout/DashboardLayout";
 import HomeLayout from "../../Layout/HomeLayout.js/HomeLayout";
 import Login from "../../Pages/Authentication/Login/Login";
 import SignUp from "../../Pages/Authentication/SignUp/SignUp";
+import CategoryProduct from "../../Pages/Category_product/CategoryProduct";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Blog from "../../Pages/Home/Blog/Blog";
 import Home from "../../Pages/Home/Home/Home";
+import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 export const router = createBrowserRouter([
     {
@@ -20,6 +22,11 @@ export const router = createBrowserRouter([
             {
                 path : 'home',
                 element : <Home></Home>
+            },
+            {
+                path : 'category/:id',
+                loader : ({params}) => fetch(`http://localhost:5000/category/${params.id}`),
+                element : <PrivateRoutes><CategoryProduct></CategoryProduct></PrivateRoutes>
             },
             {
                 path : 'login',

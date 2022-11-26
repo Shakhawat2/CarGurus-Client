@@ -13,7 +13,8 @@ const UserContext = ({ children }) => {
     const [user, setUser] = useState(null);
     // loader 
     const [loading, setLoading] = useState(true);
-
+    // set Product
+    const [product, setProduct] = useState(null);
     //01. Create Account with Email and Password
     const createAccountWithEmail = (email, password) => {
         setLoading(true)
@@ -72,8 +73,9 @@ const UserContext = ({ children }) => {
         signInWithGoogle,
         user,
         loading,
-        resetPassword
-        
+        resetPassword,
+        product,
+        setProduct
     }
     return (
         <AuthContext.Provider value={AuthInfo}>
