@@ -2,11 +2,14 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Context/UserContext';
+import useCheckUser from '../../../CustomHooks/useCheckUser';
 
 const DashboardNav = () => {
     const { user, logOut } = useContext(AuthContext)
-    console.log(user);
+    const [isAdmin, isBuyer, isSeller] = useCheckUser(user?.email);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -48,16 +51,79 @@ const DashboardNav = () => {
                             Blog
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink
-                            to="/dashboard"
-                            aria-label="Dashboard"
-                            title="Dashboard"
-                            className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
-                        >
-                            Dashboard
-                        </NavLink>
-                    </li>
+                    {
+                        isBuyer &&
+                        <>
+                            <li>
+                                <NavLink
+                                    to="/myorders"
+                                    aria-label="My Orders"
+                                    title="My Orders"
+                                    className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
+                                >
+                                    My Orders
+                                </NavLink>
+                            </li>
+                        </>
+                    }
+                    {
+                        isSeller && <>
+                            <li>
+                                <NavLink
+                                    to="/addproduct"
+                                    aria-label="Add Product"
+                                    title="Add Product"
+                                    className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
+                                >
+                                    Add Product
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/myproduct"
+                                    aria-label="My Product"
+                                    title="My Product"
+                                    className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
+                                >
+                                    My Product
+                                </NavLink>
+                            </li>
+                        </>
+                    }
+                    {
+                        isAdmin && <>
+                            <li>
+                                <NavLink
+                                    to="/allsellers"
+                                    aria-label="All Sellers"
+                                    title="All Sellers"
+                                    className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
+                                >
+                                    All Sellers
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/allbuyers"
+                                    aria-label="All Buyers"
+                                    title="All Buyers"
+                                    className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
+                                >
+                                    All Buyers
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/reportitem"
+                                    aria-label="Reported Item"
+                                    title="Reported Item"
+                                    className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
+                                >
+                                    Reported Item
+                                </NavLink>
+                            </li>
+                        </>
+                    }
 
 
 
@@ -120,31 +186,15 @@ const DashboardNav = () => {
                             <div className="p-5 bg-white border rounded shadow-sm">
                                 <div className="flex items-center justify-between mb-4">
                                     <div>
-                                        <a
-                                            href="/"
+                                        <Link
+                                            to="/"
                                             aria-label="Company"
                                             title="Company"
                                             className="inline-flex items-center"
                                         >
-                                            <svg
-                                                className="w-8 text-deep-purple-accent-400"
-                                                viewBox="0 0 24 24"
-                                                strokeLinejoin="round"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeMiterlimit="10"
-                                                stroke="currentColor"
-                                                fill="none"
-                                            >
-                                                <rect x="3" y="1" width="7" height="12" />
-                                                <rect x="3" y="17" width="7" height="6" />
-                                                <rect x="14" y="1" width="7" height="6" />
-                                                <rect x="14" y="11" width="7" height="12" />
-                                            </svg>
-                                            <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                                                Company
-                                            </span>
-                                        </a>
+
+                                            <img className='h-7' src="https://images.ctfassets.net/0czyc7nlfvzo/6Uk8HOsyj67Ny7a88YNRne/bb99d2107e1811044ddbf0f63e334620/CarGurus_Digital_Color_Registered.png" alt="" />
+                                        </Link>
                                     </div>
                                     <div>
                                         <button
@@ -165,55 +215,130 @@ const DashboardNav = () => {
                                 <nav>
                                     <ul className="space-y-4">
                                         <li>
-                                            <a
-                                                href="/"
-                                                aria-label="Our product"
-                                                title="Our product"
-                                                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                            <NavLink
+                                                to="/home"
+                                                aria-label="Home"
+                                                title="Home"
+                                                className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
                                             >
-                                                Product
-                                            </a>
+                                                Home
+                                            </NavLink>
                                         </li>
                                         <li>
-                                            <a
-                                                href="/"
-                                                aria-label="Our product"
-                                                title="Our product"
-                                                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                            <NavLink
+                                                to="/blog"
+                                                aria-label="Blog"
+                                                title="Blog"
+                                                className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
                                             >
-                                                Features
-                                            </a>
+                                                Blog
+                                            </NavLink>
                                         </li>
-                                        <li>
-                                            <a
-                                                href="/"
-                                                aria-label="Product pricing"
-                                                title="Product pricing"
-                                                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                                            >
-                                                Pricing
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="/"
-                                                aria-label="About us"
-                                                title="About us"
-                                                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                                            >
-                                                About us
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="/"
-                                                className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                                                aria-label="Sign up"
-                                                title="Sign up"
-                                            >
-                                                Sign up
-                                            </a>
-                                        </li>
+                                        {
+                                            isBuyer &&
+                                            <>
+                                                <li>
+                                                    <NavLink
+                                                        to="/myorders"
+                                                        aria-label="My Orders"
+                                                        title="My Orders"
+                                                        className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
+                                                    >
+                                                        My Orders
+                                                    </NavLink>
+                                                </li>
+                                            </>
+                                        }
+                                        {
+                                            isSeller && <>
+                                                <li>
+                                                    <NavLink
+                                                        to="/addproduct"
+                                                        aria-label="Add Product"
+                                                        title="Add Product"
+                                                        className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
+                                                    >
+                                                        Add Product
+                                                    </NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink
+                                                        to="/myproduct"
+                                                        aria-label="My Product"
+                                                        title="My Product"
+                                                        className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
+                                                    >
+                                                        My Product
+                                                    </NavLink>
+                                                </li>
+                                            </>
+                                        }
+                                        {
+                                            isAdmin && <>
+                                                <li>
+                                                    <NavLink
+                                                        to="/allsellers"
+                                                        aria-label="All Sellers"
+                                                        title="All Sellers"
+                                                        className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
+                                                    >
+                                                        All Sellers
+                                                    </NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink
+                                                        to="/allbuyers"
+                                                        aria-label="All Buyers"
+                                                        title="All Buyers"
+                                                        className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
+                                                    >
+                                                        All Buyers
+                                                    </NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink
+                                                        to="/reportitem"
+                                                        aria-label="Reported Item"
+                                                        title="Reported Item"
+                                                        className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
+                                                    >
+                                                        Reported Item
+                                                    </NavLink>
+                                                </li>
+                                            </>
+                                        }
+
+
+
+
+                                        {
+                                            user
+                                                ?
+                                                <li onClick={handleLogOut}>
+                                                    <Link
+                                                        to="/"
+                                                        className="inline-flex btn btn-neutral items-center justify-center h-10 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                                                        aria-label="Log Out"
+                                                        title="Log Out"
+                                                    >
+                                                        Log Out
+                                                    </Link>
+                                                </li>
+
+                                                :
+                                                <li>
+                                                    <Link
+                                                        to="/login"
+                                                        className="inline-flex btn btn-neutral items-center justify-center h-10 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                                                        aria-label="Log In"
+                                                        title="Log In"
+                                                    >
+                                                        Log In
+                                                    </Link>
+                                                </li>
+
+
+                                        }
                                     </ul>
                                 </nav>
                             </div>

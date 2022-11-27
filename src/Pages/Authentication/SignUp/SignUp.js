@@ -60,11 +60,23 @@ const SignUp = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    toast.success('Sign Up Successfuly')
-                    navigate('/');
+                    
+                    getUserToken(user?.email)
                 }
             })
             .catch(err => toast.error(err))
+    }
+    //get TOken 
+    const getUserToken = email => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+        .then(res => res.json())
+        .then(data => {
+            if(data.accessToken){
+                toast.success('Sign Up Successfuly')
+                localStorage.setItem('accessToken', data.accessToken)
+                navigate('/');
+            }
+        })
     }
 
     // Create Account With Google
@@ -76,7 +88,7 @@ const SignUp = () => {
                     name : user?.displayName,
                     image : user?.photoURL,
                     email: user?.email,
-                    account_type: 'User',
+                    account_type: 'Buyer',
                 }
                 saveUser(users);
             }).catch((error) => {
@@ -111,7 +123,7 @@ const SignUp = () => {
                                         { required: "This field is required" })}
                                         className="select w-full max-w-xs ml-2">
                                         {/* <option disabled selected>Please Select type of account</option> */}
-                                        <option>User</option>
+                                        <option>Buyer</option>
                                         <option>Seller</option>
                                     </select>
                                     {errors.account_type && <span>{errors.account_type.message}</span>}
