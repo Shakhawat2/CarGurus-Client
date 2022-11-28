@@ -84,7 +84,7 @@ const DashboardNav = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="/myproduct"
+                                    to="/dashboard/myproduct"
                                     aria-label="My Product"
                                     title="My Product"
                                     className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}

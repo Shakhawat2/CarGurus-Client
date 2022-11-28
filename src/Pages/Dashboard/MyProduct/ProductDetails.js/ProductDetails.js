@@ -1,11 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
-import { AuthContext } from '../../Context/UserContext';
-import LargeLoader from '../Shared/Loader/LargeLoader/LargeLoader';
+import React from 'react';
 
-const SingleProduct = ({ product }) => {
-    const { setProduct } = useContext(AuthContext)
-
+const ProductDetails = ({ product, handleProductDelete, addAdvertisement }) => {
     return (
         <div className="">
             <section>
@@ -18,13 +13,13 @@ const SingleProduct = ({ product }) => {
                             </div>
                             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
                                 <h1 className="text-black text-2xl title-font font-bold mb-2">
-                                    {/* <input type="radio" className='bg-blue-600'/> */}
+                                    
 
                                     <span className=''>{product?.name}</span>
 
                                 </h1>
                                 <p className="leading-relaxed text-base">{product?.description.slice(0, 150)}</p>
-                                
+        
                                 <div className="md:flex font-bold text-gray-800 mt-3">
                                     <div className="w-full md:w-1/2 flex space-x-3">
                                         <div className="w-1/2">
@@ -54,9 +49,9 @@ const SingleProduct = ({ product }) => {
                                             <div className='flex  items-center'>
                                                 {
                                                     product?.verified &&
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className='h-6'  fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                            <path className='text-blue-600' stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                                                        </svg>                                                   
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className='h-6' fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+                                                        <path className='text-blue-600' stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                                    </svg>
                                                 }
                                                 <p className='ml-2'>{product?.seller_name}</p>
                                             </div>
@@ -75,10 +70,15 @@ const SingleProduct = ({ product }) => {
                                             <h2 className="text-gray-500">Post Time</h2>
                                             <p>{product?.post_time}</p>
                                         </div>
+                                        <div className="w-1/2">
+                                            <h2 className="text-gray-500">Status</h2>
+                                            <p>{product?.status}</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='mt-3'>
-                                    <label onClick={() => setProduct(product)} htmlFor="category_modal" className='btn '>Book Now</label>
+                                    <label  onClick={() => handleProductDelete(product?._id)} className='btn '>Delete Product</label>
+                                    <label onClick={() => addAdvertisement(product)}  className='btn ml-3'>Advertise</label>
                                 </div>
                             </div>
                         </div>
@@ -89,4 +89,4 @@ const SingleProduct = ({ product }) => {
     );
 };
 
-export default SingleProduct;
+export default ProductDetails;

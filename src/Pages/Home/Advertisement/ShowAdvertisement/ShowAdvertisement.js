@@ -1,9 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
-import { AuthContext } from '../../Context/UserContext';
-import LargeLoader from '../Shared/Loader/LargeLoader/LargeLoader';
+import { AuthContext } from '../../../../Context/UserContext';
 
-const SingleProduct = ({ product }) => {
+const ShowAdvertisement = ({ product }) => {
     const { setProduct } = useContext(AuthContext)
 
     return (
@@ -54,9 +52,9 @@ const SingleProduct = ({ product }) => {
                                             <div className='flex  items-center'>
                                                 {
                                                     product?.verified &&
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className='h-6'  fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                            <path className='text-blue-600' stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                                                        </svg>                                                   
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className='h-6' fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                        <path className='text-blue-600' stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                                    </svg>
                                                 }
                                                 <p className='ml-2'>{product?.seller_name}</p>
                                             </div>
@@ -89,4 +87,4 @@ const SingleProduct = ({ product }) => {
     );
 };
 
-export default SingleProduct;
+export default ShowAdvertisement;

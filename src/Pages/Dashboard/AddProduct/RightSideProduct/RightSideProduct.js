@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../Context/UserContext';
 
 const RightSideProduct = () => {
@@ -11,22 +12,23 @@ const RightSideProduct = () => {
     const yr = date.getFullYear();
     const mnth = date.getMonth();
     const min = date.getDate();
-
+    const navigate = useNavigate();
     const handleAddProduct = (data) => {
         
         if (data.category_id === "1" || data.category_id === "2" || data.category_id === "3") {
-            fetch('http://localhost:5000/category/product', {
+           return  fetch('http://localhost:5000/category/product', {
                 method : 'post',
                 headers : {
                     'content-type' : 'application/json'
                 },
-                body : JSON.stringify(data)
+                body : JSON.stringify({...data, status : "Available"})
             })
             .then(res => res.json())
             .then(data => {
                 console.log(data);
                 if(data.insertedId){
-                    toast.success('Product added')
+                    toast.success('Product added');
+                    navigate('/dashboard/myproduct');
                 }
             })
             .catch(err => console.log(err))
