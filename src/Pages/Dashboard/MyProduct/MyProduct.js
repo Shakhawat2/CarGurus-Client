@@ -56,7 +56,7 @@ const MyProduct = () => {
 
 
     return (
-        <div className='py-10'>
+        <div className='py-10 '>
             {
                 data &&
                 data.map(product => <ProductDetails key={product._id} product={product} handleProductDelete={handleProductDelete} addAdvertisement={addAdvertisement}></ProductDetails>)
