@@ -3,13 +3,13 @@ import toast from 'react-hot-toast';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Context/UserContext';
 import useCheckUser from '../../../CustomHooks/useCheckUser';
+import LargeLoader from '../../Shared/Loader/LargeLoader/LargeLoader';
 
 const DashboardNav = () => {
-    const { user, logOut } = useContext(AuthContext)
-    const [isAdmin, isBuyer, isSeller] = useCheckUser(user?.email);
+    const { user, logOut } = useContext(AuthContext);
+    const [isAdmin, isBuyer, isSeller, isUserloader] = useCheckUser(user?.email);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -17,6 +17,10 @@ const DashboardNav = () => {
             }).catch((error) => {
                 toast.error('An error happened');
             });
+    }
+
+    if(isUserloader){
+        return <LargeLoader></LargeLoader>
     }
     return (
         <div className="px-4 py-5 bg-gray-100 mx-auto sm:max-w-full md:max-w-full lg:max-w-full md:px-24 lg:px-8">
@@ -56,7 +60,7 @@ const DashboardNav = () => {
                         <>
                             <li>
                                 <NavLink
-                                    to="/myorders"
+                                    to="/dashboard/myorders"
                                     aria-label="My Orders"
                                     title="My Orders"
                                     className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
@@ -70,7 +74,7 @@ const DashboardNav = () => {
                         isSeller && <>
                             <li>
                                 <NavLink
-                                    to="/addproduct"
+                                    to="/dashboard/addproduct"
                                     aria-label="Add Product"
                                     title="Add Product"
                                     className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
@@ -94,7 +98,7 @@ const DashboardNav = () => {
                         isAdmin && <>
                             <li>
                                 <NavLink
-                                    to="/allsellers"
+                                    to="/dashboard/allsellers"
                                     aria-label="All Sellers"
                                     title="All Sellers"
                                     className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
@@ -104,7 +108,7 @@ const DashboardNav = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="/allbuyers"
+                                    to="/dashboard/allbuyers"
                                     aria-label="All Buyers"
                                     title="All Buyers"
                                     className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}

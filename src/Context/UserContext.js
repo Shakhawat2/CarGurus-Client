@@ -15,6 +15,12 @@ const UserContext = ({ children }) => {
     const [loading, setLoading] = useState(true);
     // set Product
     const [product, setProduct] = useState(null);
+
+    // set category
+    const [categories, setCategories] = useState(null);
+    // set categories details 
+    const [categoriesDetails, setCategoriesDetails] = useState({})
+
     //01. Create Account with Email and Password
     const createAccountWithEmail = (email, password) => {
         setLoading(true)
@@ -75,7 +81,11 @@ const UserContext = ({ children }) => {
         loading,
         resetPassword,
         product,
-        setProduct
+        setProduct,
+        categories,
+        setCategories,
+        categoriesDetails,
+        setCategoriesDetails
     }
     return (
         <AuthContext.Provider value={AuthInfo}>

@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/UserContext';
 import LargeLoader from '../../Shared/Loader/LargeLoader/LargeLoader';
 import Category from './Category/Category';
 
 const Banner = () => {
     const { data, isLoading } = useQuery({
-        queryKey: [],
+        queryKey: ['category'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/category`);
             const data = await res.json();
@@ -17,6 +18,7 @@ const Banner = () => {
     if (isLoading) {
         return <LargeLoader></LargeLoader>
     }
+
 
     return (
         <section className="relative  bg-blueGray-50">
@@ -32,7 +34,7 @@ const Banner = () => {
                                     Find the right car <span className='font-bold text-blue-500'>Guaranteed </span>
                                 </h1>
                                 <p className="mt-4 text-white text-lg text-blueGray-200 ">
-                                CarGurus is a Cambridge, Massachusetts-based automotive research and shopping website that assists users in comparing local listings for used and new cars, and contacting sellers. CarGurus is pronounced as a single word, rhyming with 'kangaroos'
+                                    CarGurus is a Cambridge, Massachusetts-based automotive research and shopping website that assists users in comparing local listings for used and new cars, and contacting sellers. CarGurus is pronounced as a single word, rhyming with 'kangaroos'
                                 </p>
                             </div>
                         </div>
@@ -55,10 +57,17 @@ const Banner = () => {
                     <footer className="relative  pt-8 pb-6 mt-1">
                         <div className="container mx-auto px-4">
                             <div className="flex flex-wrap items-center md:justify-between justify-center">
-                                <div className="w-full md:w-6/12 px-4 mx-auto text-center">
+                                <div className="w-full md:w-6/12 px-4 mx-auto  flex items-center justify-center">
                                     <div className="text-sm text-blueGray-500 font-semibold py-1">
-                                        Please Select a  Category and show available services 
+                                        Please Select a  Category and Buy available Product
                                     </div>
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path className='text-blue-600' stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75L12 3m0 0l3.75 3.75M12 3v18" />
+                                        </svg>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>

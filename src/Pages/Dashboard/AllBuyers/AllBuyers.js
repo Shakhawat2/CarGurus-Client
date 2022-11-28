@@ -1,0 +1,81 @@
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
+import toast from 'react-hot-toast';
+import LargeLoader from '../../Shared/Loader/LargeLoader/LargeLoader';
+import SingleSellers from '../AllSellers/SingleSellers';
+import SingleBuyers from './SingleBuyers.js/SingleBuyers';
+
+const AllBuyers = () => {
+    const { data, isLoading, refetch } = useQuery({
+        queryKey: ['buyers'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/users/buyers');
+            const data = await res.json();
+            return data;
+        }
+    })
+
+    const handleDelete = (id) => {
+        fetch(`http://localhost:5000/user/${id}`, {
+            method: 'delete'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.deletedCount > 0){
+                    toast.success('Deleted Successfully');
+                    refetch()
+                }
+            })
+            .catch(err => console.log(err))
+    }
+    if (isLoading) {
+        return <LargeLoader></LargeLoader>
+    }
+    return (
+        <div className='w-4/5 mx-auto mt-5'>
+            {/* <!-- component --> */}
+            <section className="antialiased bg-gray-100 text-gray-600 h-screen px-4">
+                <div className="flex flex-col justify-center h-full">
+                    {/* <!-- Table --> */}
+                    <div className="w-full max-w-5xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+                        <header className="px-5 py-4 border-b border-gray-100">
+                            <h2 className="font-semibold text-gray-800">All Buyers</h2>
+                        </header>
+                        <div className="p-3">
+                            <div className="overflow-x-auto">
+                                <table className="table-auto w-full">
+                                    <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                                        <tr>
+                                            <th className="p-2 whitespace-nowrap">
+                                                <div className="font-semibold text-left">Name</div>
+                                            </th>
+                                            <th className="p-2 whitespace-nowrap">
+                                                <div className="font-semibold text-left">Email</div>
+                                            </th>
+                                            <th className="p-2 whitespace-nowrap">
+                                                <div className="font-semibold text-left">Verify</div>
+                                            </th>
+                                            <th className="p-2 whitespace-nowrap">
+                                                <div className="font-semibold text-left">Delete</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="text-sm divide-y divide-gray-100">
+
+                                        {
+                                            data &&
+                                            data.map(dt => <SingleBuyers key={dt._id} dt={dt} handleDelete={handleDelete}></SingleBuyers>)
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+};
+
+export default AllBuyers;

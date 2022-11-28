@@ -1,8 +1,11 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/UserContext';
+import LargeLoader from '../Shared/Loader/LargeLoader/LargeLoader';
 
 const SingleProduct = ({ product }) => {
-    const {setProduct} = useContext(AuthContext)
+    const { setProduct } = useContext(AuthContext)
+
     return (
         <div class="">
             <section>
@@ -92,13 +95,13 @@ const SingleProduct = ({ product }) => {
                                         </div>
                                         <div class="w-1/2">
                                             <h2 class="text-gray-500">Resale Price</h2>
-                                            <p>{product?.resale_price}</p>
+                                            <p>$ {product?.resale_price}</p>
                                         </div>
                                     </div>
                                     <div class="w-full md:w-1/2 flex space-x-3">
                                         <div class="w-1/2">
                                             <h2 class="text-gray-500">Original Price</h2>
-                                            <p>{product?.original_price}</p>
+                                            <p>$ {product?.original_price}</p>
                                         </div>
                                         <div class="w-1/2">
                                             <h2 class="text-gray-500">Condition</h2>
@@ -111,7 +114,12 @@ const SingleProduct = ({ product }) => {
                                         <div class="w-1/2">
                                             <h2 class="text-gray-500">Seller Name</h2>
                                             <div className='flex  items-center'>
-                                                <div className="badge badge-sm bg-blue-600"></div>
+                                                {
+                                                    product?.verified &&
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className='h-6'  fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                            <path className='text-blue-600' stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                                        </svg>                                                   
+                                                }
                                                 <p className='ml-2'>{product?.seller_name}</p>
                                             </div>
                                         </div>

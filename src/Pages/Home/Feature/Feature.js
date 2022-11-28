@@ -2,102 +2,20 @@ import React from 'react';
 
 const Feature = () => {
     return (
-        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-            <div className="grid gap-5 row-gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                <div className="px-12 text-center sm:px-0">
-                    <div className="flex items-center justify-center w-10 h-10 mx-auto mb-4 rounded-full bg-indigo-50 sm:w-12 sm:h-12">
-                        <svg
-                            className="w-8 h-8 text-deep-purple-accent-400 sm:w-10 sm:h-10"
-                            stroke="currentColor"
-                            viewBox="0 0 52 52"
-                        >
-                            <polygon
-                                strokeWidth="3"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                fill="none"
-                                points="29 13 14 29 25 29 23 39 38 23 27 23"
-                            />
-                        </svg>
-                    </div>
-                    <h6 className="mb-2 text-sm font-bold leading-5 tracking-wider uppercase">
-                        Fearless
-                    </h6>
-                    <div className="mb-2 text-gray-700">
-                        I will remember and recover, not forgive and forget.
-                    </div>
-                </div>
-                <div className="px-12 text-center sm:px-0">
-                    <div className="flex items-center justify-center w-10 h-10 mx-auto mb-4 rounded-full bg-indigo-50 sm:w-12 sm:h-12">
-                        <svg
-                            className="w-8 h-8 text-deep-purple-accent-400 sm:w-10 sm:h-10"
-                            stroke="currentColor"
-                            viewBox="0 0 52 52"
-                        >
-                            <polygon
-                                strokeWidth="3"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                fill="none"
-                                points="29 13 14 29 25 29 23 39 38 23 27 23"
-                            />
-                        </svg>
-                    </div>
-                    <h6 className="mb-2 text-sm font-bold leading-5 tracking-wider uppercase">
-                        Honest
-                    </h6>
-                    <div className="mb-2 text-gray-700">
-                        I have nothing to lose but something to gain.
-                    </div>
-                </div>
-                <div className="px-12 text-center sm:px-0">
-                    <div className="flex items-center justify-center w-10 h-10 mx-auto mb-4 rounded-full bg-indigo-50 sm:w-12 sm:h-12">
-                        <svg
-                            className="w-8 h-8 text-deep-purple-accent-400 sm:w-10 sm:h-10"
-                            stroke="currentColor"
-                            viewBox="0 0 52 52"
-                        >
-                            <polygon
-                                strokeWidth="3"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                fill="none"
-                                points="29 13 14 29 25 29 23 39 38 23 27 23"
-                            />
-                        </svg>
-                    </div>
-                    <h6 className="mb-2 text-sm font-bold leading-5 tracking-wider uppercase">
-                        Beautiful
-                    </h6>
-                    <div className="mb-2 text-gray-700">
-                        White is not always light and black is not always dark.
-                    </div>
-                </div>
-                <div className="px-12 text-center sm:px-0">
-                    <div className="flex items-center justify-center w-10 h-10 mx-auto mb-4 rounded-full bg-indigo-50 sm:w-12 sm:h-12">
-                        <svg
-                            className="w-8 h-8 text-deep-purple-accent-400 sm:w-10 sm:h-10"
-                            stroke="currentColor"
-                            viewBox="0 0 52 52"
-                        >
-                            <polygon
-                                strokeWidth="3"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                fill="none"
-                                points="29 13 14 29 25 29 23 39 38 23 27 23"
-                            />
-                        </svg>
-                    </div>
-                    <h6 className="mb-2 text-sm font-bold leading-5 tracking-wider uppercase">
-                        Fantastic
-                    </h6>
-                    <div className="mb-2 text-gray-700">
-                        The meaning of life is to give life meaning.
-                    </div>
-                </div>
+        <section className="py-6  dark:text-gray-50">
+            <div className="container grid grid-cols-2 gap-4 p-4 mx-auto md:grid-cols-4">
+                <img src="https://i.ytimg.com/vi/dip_8dmrcaU/maxresdefault.jpg" alt="" className="w-full h-full col-span-2 row-span-2 rounded shadow-sm min-h-96 md:col-start-3 md:row-start-1 dark:bg-gray-500 aspect-square" />
+                <img alt="" className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square" src="https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg?cs=srgb&dl=pexels-pixabay-358070.jpg&fm=jpg" />
+                <img alt="" className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square" src="https://images.drive.com.au/driveau/image/upload/c_fill,h_2466,w_4383/q_auto:eco/f_auto/v1/cms/uploads/y1k0lzdsvnj5yqkdjfpi" />
+                <img alt="" className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square" src="https://cdni.autocarindia.com/utils/imageresizer.ashx?n=https://cms.haymarketindia.net/model/uploads/modelimages/Mahindra-Scorpio-N-300620221053.jpg&w=872&h=578&q=75&c=1" />
+                <img alt="" className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square" src="https://en.higer.com/uploadfiles/2021/01/20210112143316895.png?6Z2e5LqMS0xRNjE0OEsucG5n" />
+                <img alt="" className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square" src="https://assetsw.bus.com/content/uploads/2020/02/14170850/Charter-Bus-Rentals-Photo.jpg" />
+                <img alt="" className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square" src="https://s.yimg.com/ny/api/res/1.2/fqGF9LlZVy0es64gmq0h5g--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQ4MA--/https://media.zenfs.com/en/motorious_297/80564d9d3328788ed1cb9fb039d108b3" />
+                <img alt="" className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square" src="https://www.drivearabia.com/app/uploads/2013/09/l60.jpg" />
+                <img alt="" className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square" src="https://di-uploads-pod5.dealerinspire.com/islandvolkswagen/uploads/2020/08/IDBuzz-Intro-D.jpg" />
+                <img src="https://gumlet.assettype.com/freepressjournal/2021-04/1f859fbe-3ae4-4c69-baf3-6cb4d9482939/BEST_BUS.jpg?format=webp&w=480&dpr=2.6" alt="" className="w-full h-full col-span-2 row-span-2 rounded shadow-sm min-h-96 md:col-start-1 md:row-start-3 dark:bg-gray-500 aspect-square" />
             </div>
-        </div>
+        </section>
     );
 };
 

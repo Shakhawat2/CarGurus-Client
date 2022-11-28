@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/UserContext';
 
 const CategoryModal = () => {
@@ -7,8 +8,27 @@ const CategoryModal = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const handleBooking = (data) =>{
-        console.log(data);
-        setProduct(null)
+        const booking = {
+            ...data,
+            ...product
+        }
+        console.log(booking);
+
+        fetch(`http://localhost:5000/booking`, {
+            method : 'post', 
+            headers : {
+                'content-type' : 'application/json'
+            },
+            body : JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.insertedId){
+                toast.success('Booking Successful')
+                setProduct(null)
+            }
+        })
+        .catch(err => console.log(err))
     }
 
     return (
@@ -44,8 +64,8 @@ const CategoryModal = () => {
                             <label className="label">
                                 <span className="label-text">Meeting Location</span>
                             </label>
-                            <input type="text" placeholder="Enter Meeting Location" {...register("location", { required: "This field is Required" })} className="input input-bordered w-full " />
-                            {errors.location && <span className='text-red-600 mt-3'>{errors.location.message}</span>}
+                            <input type="text" placeholder="Enter Meeting Location" {...register("venue", { required: "This field is Required" })} className="input input-bordered w-full " />
+                            {errors.venue && <span className='text-red-600 mt-3'>{errors.venue.message}</span>}
                             <button type='submit' className='btn w-full mt-5'>Submit</button>
                         </div>
                     </form>
