@@ -12,14 +12,14 @@ const MyProduct = () => {
     const { data, isLoading, refetch } = useQuery({
         queryKey: ['product', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/product/${user?.email}`);
+            const res = await fetch(`https://assignment-12-server-kappa.vercel.app/product/${user?.email}`);
             const data = await res.json();
             return data;
         }
     })
 
     const handleProductDelete = (id) => {
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://assignment-12-server-kappa.vercel.app/product/${id}`, {
             method: 'delete'
         })
             .then(res => res.json())
@@ -33,7 +33,7 @@ const MyProduct = () => {
     }
 
     const addAdvertisement = (product) => {
-        fetch('http://localhost:5000/advertise', {
+        fetch('https://assignment-12-server-kappa.vercel.app/advertise', {
             method: 'post',
             headers: {
                 'content-type': 'application/json'

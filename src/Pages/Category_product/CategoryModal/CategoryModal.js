@@ -14,7 +14,7 @@ const CategoryModal = () => {
         }
         console.log(booking);
 
-        fetch(`http://localhost:5000/booking`, {
+        fetch(`https://assignment-12-server-kappa.vercel.app/booking`, {
             method : 'post', 
             headers : {
                 'content-type' : 'application/json'

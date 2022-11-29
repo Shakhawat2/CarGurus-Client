@@ -7,7 +7,7 @@ const useCheckUser = email =>{
     const [isUserloader, setIsUserLoader] = useState(true);
     useEffect(() =>{
         if(email){
-            fetch(`http://localhost:5000/user/admin/${email}`)
+            fetch(`https://assignment-12-server-kappa.vercel.app/user/admin/${email}`)
             .then(res => res.json())
             .then(data => {
                 if(data?.isAdmin){

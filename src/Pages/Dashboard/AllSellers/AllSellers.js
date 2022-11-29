@@ -8,13 +8,13 @@ const AllSellers = () => {
     const { data, isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/sellers');
+            const res = await fetch('https://assignment-12-server-kappa.vercel.app/users/sellers');
             const data = await res.json();
             return data;
         }
     })
     const handleDelete = (id) =>{
-        fetch(`http://localhost:5000/user/${id}`, {
+        fetch(`https://assignment-12-server-kappa.vercel.app/user/${id}`, {
             method : 'delete'
         })
         .then(res => res.json())
@@ -27,7 +27,7 @@ const AllSellers = () => {
         .catch(err => console.log(err))
     }
     const handleVerify = id =>{
-        fetch(`http://localhost:5000/user/${id}`, {
+        fetch(`https://assignment-12-server-kappa.vercel.app/user/${id}`, {
             method : 'put'
         })
         .then(res => res.json())

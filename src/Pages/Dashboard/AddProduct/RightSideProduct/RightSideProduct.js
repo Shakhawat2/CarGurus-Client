@@ -16,7 +16,7 @@ const RightSideProduct = () => {
     const handleAddProduct = (data) => {
         
         if (data.category_id === "1" || data.category_id === "2" || data.category_id === "3") {
-           return  fetch('http://localhost:5000/category/product', {
+           return  fetch('https://assignment-12-server-kappa.vercel.app/category/product', {
                 method : 'post',
                 headers : {
                     'content-type' : 'application/json'

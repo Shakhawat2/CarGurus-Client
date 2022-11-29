@@ -9,7 +9,7 @@ const Banner = () => {
     const { data, isLoading } = useQuery({
         queryKey: ['category'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/category`);
+            const res = await fetch(`https://assignment-12-server-kappa.vercel.app/category`);
             const data = await res.json();
             return data
         }

@@ -50,7 +50,7 @@ const SignUp = () => {
     }
     // post user 
     const saveUser = (user) => {
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://assignment-12-server-kappa.vercel.app/users`, {
             method: 'post',
             headers: {
                 'content-type': 'application/json'
@@ -68,7 +68,7 @@ const SignUp = () => {
     }
     //get TOken 
     const getUserToken = email => {
-        fetch(`http://localhost:5000/jwt?email=${email}`)
+        fetch(`https://assignment-12-server-kappa.vercel.app/jwt?email=${email}`)
         .then(res => res.json())
         .then(data => {
             if(data.accessToken){
