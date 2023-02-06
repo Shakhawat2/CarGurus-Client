@@ -13,6 +13,7 @@ const AllSellers = () => {
             return data;
         }
     })
+    // https://assignment-12-server-kappa.vercel.app
     const handleDelete = (id) =>{
         fetch(`https://assignment-12-server-kappa.vercel.app/user/${id}`, {
             method : 'delete'

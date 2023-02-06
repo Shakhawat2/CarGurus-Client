@@ -25,12 +25,36 @@ const Login = () => {
             });
 
     }
+    const saveUser = (user) => {
+        fetch(`https://assignment-12-server-kappa.vercel.app/users`, {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Login Successfully')
+                    navigate(from, { replace: true });
+                }
+            })
+            .catch(err => toast.error(err))
+    }
     // Sign in With Google
     const handleGoogle = () => {
         signInWithGoogle()
             .then((result) => {
-                toast.success('Login Successfully')
-                navigate(from, { replace: true });
+                const user = result.user;
+                const users = {
+                    name: user?.displayName,
+                    image: user?.photoURL,
+                    email: user?.email,
+                    account_type: 'Buyer',
+                }
+                saveUser(users);
+
             }).catch((error) => {
                 // Handle Errors here.
                 const errorMessage = error.message;
@@ -38,15 +62,15 @@ const Login = () => {
             });
     }
     const updatePassword = (email) => {
-        if(email){
+        if (email) {
             resetPassword(email)
-            .then(() => {
-                toast('Password reset email sent')
-            })
-            .catch((error) => {
-                const errorMessage = error.message;
-                toast.error(errorMessage)
-            });
+                .then(() => {
+                    toast('Password reset email sent')
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    toast.error(errorMessage)
+                });
         }
         toast('enter email')
 

@@ -68,6 +68,16 @@ const DashboardNav = () => {
                                     My Orders
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/mywishlist"
+                                    aria-label="My WishList"
+                                    title="My WishList"
+                                    className={({ isActive }) => isActive ? "font-medium tracking-wide text-blue-600 transition-colors duration-200 hover:text-deep-purple-accent-400" : "font-medium tracking-wide text-black transition-colors duration-200 hover:text-deep-purple-accent-400"}
+                                >
+                                    My WishList
+                                </NavLink>
+                            </li>
                         </>
                     }
                     {
